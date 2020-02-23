@@ -70,10 +70,10 @@ public class AutoRed1 extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.5);
-        Bumblebarry.leftBack.setPower(.5);
-        Bumblebarry.rightFront.setPower(-.5);
-        Bumblebarry.rightBack.setPower(-.5);
+        Bumblebarry.leftFront.setPower(.4);
+        Bumblebarry.leftBack.setPower(.4);
+        Bumblebarry.rightFront.setPower(-.4);
+        Bumblebarry.rightBack.setPower(-.4);
 
         try {
             Thread.sleep(2000);

@@ -71,11 +71,22 @@ public class AutoRedVuforia extends LinearOpMode {
     private float phoneZRotate    = 0;
 
     @Override public void runOpMode() {
-        /*
-         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
-         * We can pass Vuforia the handle to a camera preview resource (on the RC phone);
-         * If no camera monitor is desired, use the parameter-less constructor instead (commented out below).
-         */
+        System.out.println("Starting up");
+        telemetry.addData("init pressed", "about to initialize");
+        telemetry.update();
+
+
+        System.out.println("Initialize Robot");
+        Bumblebarry.initializeRobot(hardwareMap);
+        System.out.println("Robot Initialized");
+
+
+
+        telemetry.addData("Status", "Ready to run");
+        telemetry.update();
+
+
+        waitForStart();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
@@ -238,14 +249,24 @@ public class AutoRedVuforia extends LinearOpMode {
 
                     if (trackable.getName().equals("Stone Target")) {
                         telemetry.addLine("Stone Target YAY");
+                        { Bumblebarry.leftFront.setPower(.5);
+                            Bumblebarry.leftBack.setPower(.5);
+                            Bumblebarry.rightFront.setPower(-.5);
+                            Bumblebarry.rightBack.setPower(-.5);}
                     }
                     targetVisible = true;
+
 
                     // getUpdatedRobotLocation() will return null if no new information is available since
                     // the last time that call was made, or if the trackable is not currently visible.
                     OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener)trackable.getListener()).getUpdatedRobotLocation();
                     if (robotLocationTransform != null) {
                         lastLocation = robotLocationTransform;
+                        Bumblebarry.leftFront.setPower(.5);
+                        Bumblebarry.leftBack.setPower(-.5);
+                        Bumblebarry.rightFront.setPower(.5);
+                        Bumblebarry.rightBack.setPower(-.5);}
+
                     }
                     break;
                 }
@@ -264,6 +285,7 @@ public class AutoRedVuforia extends LinearOpMode {
 
                 if (xPostion < -10) {
                     positionSkystone = "left";
+
                 } else {
                     positionSkystone = "center";
 
@@ -282,13 +304,23 @@ public class AutoRedVuforia extends LinearOpMode {
         }
 
         // Disable Tracking when we are done;
-        targetsSkyStone.deactivate();
+      //targetsskystone.deactivate()
 
-        if (vuforia.equals("left")) {
-            Bumblebarry.driveStraight(1,1,1);
+
+/*if (targetVisible=true)
+{ Bumblebarry.leftFront.setPower(.5);
+        Bumblebarry.leftBack.setPower(.5);
+        Bumblebarry.rightFront.setPower(-.5);
+        Bumblebarry.rightBack.setPower(-.5);}
+else if (targetVisible = false)
+    { Bumblebarry.leftFront.setPower(0);
+            Bumblebarry.leftBack.setPower(0);
+            Bumblebarry.rightFront.setPower(0);
+            Bumblebarry.rightBack.setPower(0);
+
         }
-    }
 
+*/
 
 
 }

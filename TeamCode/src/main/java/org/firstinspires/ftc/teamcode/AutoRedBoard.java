@@ -1,11 +1,5 @@
-/*package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
-*/
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -32,8 +26,8 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
 
 /*Created by mandy.peake and helen.watson on 11/22/19 */
 
-@Autonomous (name= "Red2", group= "Autonomous")
-public class AutoRed2 extends LinearOpMode {
+@Autonomous (name= "RedBoard", group= "Autonomous")
+public class AutoRedBoard extends LinearOpMode {
 
     ElapsedTime runtime = new ElapsedTime();
 
@@ -54,64 +48,59 @@ public class AutoRed2 extends LinearOpMode {
         System.out.println("Robot Initialized");
 
 
-
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
 
 
         waitForStart();
 
-       // Bumblebarry.Grabber(.5,.5);
-
         try {
             Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.5);
-        Bumblebarry.leftBack.setPower(.5);
-        Bumblebarry.rightFront.setPower(-.5);
-        Bumblebarry.rightBack.setPower(-.5);
+        Bumblebarry.leftFront.setPower(.4);
+        Bumblebarry.leftBack.setPower(.4);
+        Bumblebarry.rightFront.setPower(-.4);
+        Bumblebarry.rightBack.setPower(-.4);
 
         try {
             Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
 
-
-        Bumblebarry.leftFront.setPower(.5);
-        Bumblebarry.leftBack.setPower(.5);
-        Bumblebarry.rightFront.setPower(.5);
-        Bumblebarry.rightBack.setPower(.5);
+        Bumblebarry.Grabber(1,-1);
 
         try {
             Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.5);
-        Bumblebarry.leftBack.setPower(.5);
-        Bumblebarry.rightFront.setPower(-.5);
-        Bumblebarry.rightBack.setPower(-.5);
+        Bumblebarry.leftFront.setPower(-.4);
+        Bumblebarry.leftBack.setPower(-.4);
+        Bumblebarry.rightFront.setPower(.4);
+        Bumblebarry.rightBack.setPower(.4);
 
         try {
             Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+        Bumblebarry.leftFront.setPower(.4);
+        Bumblebarry.leftBack.setPower(.4);
+        Bumblebarry.rightFront.setPower(-.4);
+        Bumblebarry.rightBack.setPower(-.4);
 
-        Bumblebarry.leftFront.setPower(0);
-        Bumblebarry.leftBack.setPower(0);
-        Bumblebarry.rightFront.setPower(0);
-        Bumblebarry.rightBack.setPower(0);
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
 
     }
 }
+
+

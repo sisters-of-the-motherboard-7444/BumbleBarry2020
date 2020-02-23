@@ -24,17 +24,18 @@ public class HardwareSkystone {
 
     public DcMotor LiftL;
     public DcMotor LiftU;
+    public DcMotor GrabberArm;
 
 
 
 
     //Actuator motor
-    public DcMotor claw;
+    //public DcMotor claw;
 
     //Grabbing mechanism servos
-   // public Servo Grab;
-  //  public Servo Grab2;
-    public CRServo twist;
+    public Servo Grab1;
+    public Servo Grab2;
+   // public CRServo twist;
 
    // public Servo Backgrab;
    // public Servo Backgrab2;
@@ -68,14 +69,16 @@ public class HardwareSkystone {
 
         LiftU = HWMap.dcMotor.get("liftU");
 
-        claw = HWMap.dcMotor.get("claw");
+        //claw = HWMap.dcMotor.get("claw");
 
-       // Grab = HWMap.servo.get("Grab");
-       // Grab2 = HWMap.servo.get("Grab2");
-        twist = HWMap.crservo.get("twist");
+        GrabberArm = HWMap.dcMotor.get("GrabberArm");
 
-       // Grab.setPosition(0);
-        //Grab2.setPosition(0);
+        Grab1 = HWMap.servo.get("Grab");
+        Grab2 = HWMap.servo.get("Grab2");
+      //  twist = HWMap.crservo.get("twist");
+
+        Grab1.setPosition(0);
+        Grab2.setPosition(0);
 
       //  Backgrab=HWMap.servo.get("Backgrab");
        // Backgrab2=HWMap.servo.get("Backgrab2");
@@ -284,24 +287,25 @@ public class HardwareSkystone {
     }
 
 
+/*public void RubberBand (double power)
+{ GrabberArm.setPower(power);}*/
 
 
 
 
-
-    //-------------------------SKYSTONE-GRABBER--------------------------------------------------------
-
+    //-------------------------BUILDBOARD-GRABBER--------------------------------------------------------
 
 
-  //  public void Grabber(double positionL, double positionR)
-    {
 
-//        Grab.setPosition(positionL);
-  //  Grab2.setPosition((positionR));
+   public void Grabber(double positionL, double positionR)
+    { Grab1.setPosition(positionL);
+    Grab2.setPosition((positionR));
     }
-    public void twister(double power)
+
+
+  //  public void twister(double power)
     {
-        twist.setPower(power);
+  //      twist.setPower(power);
     }
 
    // public void moveClaw (double power){

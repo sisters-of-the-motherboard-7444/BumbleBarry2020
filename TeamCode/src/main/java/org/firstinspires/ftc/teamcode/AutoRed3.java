@@ -70,10 +70,10 @@ public class AutoRed3 extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.75);
-        Bumblebarry.leftBack.setPower(.75);
-        Bumblebarry.rightFront.setPower(-.75);
-        Bumblebarry.rightBack.setPower(-.75);
+        Bumblebarry.leftFront.setPower(.5);
+        Bumblebarry.leftBack.setPower(.5);
+        Bumblebarry.rightFront.setPower(-.5);
+        Bumblebarry.rightBack.setPower(-.5);
 
         try {
             Thread.sleep(2000);
@@ -83,10 +83,10 @@ public class AutoRed3 extends LinearOpMode {
         }
 
 
-        Bumblebarry.leftFront.setPower(-.7);
-        Bumblebarry.leftBack.setPower(-.7);
-        Bumblebarry.rightFront.setPower(-.7);
-        Bumblebarry.rightBack.setPower(-.7);
+        Bumblebarry.leftFront.setPower(-.5);
+        Bumblebarry.leftBack.setPower(-.5);
+        Bumblebarry.rightFront.setPower(-.5);
+        Bumblebarry.rightBack.setPower(-.5);
 
         try {
             Thread.sleep(2000);
@@ -95,10 +95,10 @@ public class AutoRed3 extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.6);
-        Bumblebarry.leftBack.setPower(.6);
-        Bumblebarry.rightFront.setPower(-.6);
-        Bumblebarry.rightBack.setPower(-.6);
+        Bumblebarry.leftFront.setPower(.4);
+        Bumblebarry.leftBack.setPower(.4);
+        Bumblebarry.rightFront.setPower(-.4);
+        Bumblebarry.rightBack.setPower(-.4);
 
         try {
             Thread.sleep(2000);

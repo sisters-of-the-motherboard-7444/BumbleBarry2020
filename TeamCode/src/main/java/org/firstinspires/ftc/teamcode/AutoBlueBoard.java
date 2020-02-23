@@ -26,8 +26,8 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
 
 /*Created by mandy.peake and helen.watson on 11/22/19 */
 
-@Autonomous (name= "RedBoard", group= "Autonomous")
-public class AutoRedBoard extends LinearOpMode {
+@Autonomous (name= "BlueBoard", group= "Autonomous")
+public class AutoBlueBoard extends LinearOpMode {
 
     ElapsedTime runtime = new ElapsedTime();
 
@@ -59,10 +59,10 @@ public class AutoRedBoard extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.25);
-        Bumblebarry.leftBack.setPower(-.25);
-        Bumblebarry.rightFront.setPower(.25);
-        Bumblebarry.rightBack.setPower(-.25);
+        Bumblebarry.leftFront.setPower(-.25);
+        Bumblebarry.leftBack.setPower(.25);
+        Bumblebarry.rightFront.setPower(-.25);
+        Bumblebarry.rightBack.setPower(.25);
 
         try {
             Thread.sleep(2000);
@@ -108,10 +108,10 @@ public class AutoRedBoard extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(-.45);
-        Bumblebarry.leftBack.setPower(.45);
-        Bumblebarry.rightFront.setPower(-.45);
-        Bumblebarry.rightBack.setPower(.45);
+        Bumblebarry.leftFront.setPower(.45);
+        Bumblebarry.leftBack.setPower(-.45);
+        Bumblebarry.rightFront.setPower(.45);
+        Bumblebarry.rightBack.setPower(-.45);
 
         try {
             Thread.sleep(3500);
@@ -121,5 +121,4 @@ public class AutoRedBoard extends LinearOpMode {
 
     }
 }
-
 

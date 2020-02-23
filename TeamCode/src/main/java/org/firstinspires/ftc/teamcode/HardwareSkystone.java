@@ -73,12 +73,12 @@ public class HardwareSkystone {
 
         GrabberArm = HWMap.dcMotor.get("GrabberArm");
 
-        Grab1 = HWMap.servo.get("Grab");
+        Grab1 = HWMap.servo.get("Grab1");
         Grab2 = HWMap.servo.get("Grab2");
       //  twist = HWMap.crservo.get("twist");
 
         Grab1.setPosition(0);
-        Grab2.setPosition(0);
+        Grab2.setPosition(1);
 
       //  Backgrab=HWMap.servo.get("Backgrab");
        // Backgrab2=HWMap.servo.get("Backgrab2");
@@ -297,9 +297,9 @@ public class HardwareSkystone {
 
 
 
-   public void Grabber(double positionL, double positionR)
-    { Grab1.setPosition(positionL);
-    Grab2.setPosition((positionR));
+   public void Grabber(double positionR, double positionL)
+    { Grab1.setPosition(positionR);
+    Grab2.setPosition((positionL));
     }
 
 

@@ -114,7 +114,7 @@ public class AutoRedBoard2 extends LinearOpMode {
         Bumblebarry.rightBack.setPower(.45);
 
         try {
-            Thread.sleep(1500);
+            Thread.sleep(2500);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -131,8 +131,8 @@ public class AutoRedBoard2 extends LinearOpMode {
         }
 
         Bumblebarry.leftFront.setPower(-.45);
-        Bumblebarry.leftBack.setPower(-.45);
-        Bumblebarry.rightFront.setPower(.45);
+        Bumblebarry.leftBack.setPower(.45);
+        Bumblebarry.rightFront.setPower(-.45);
         Bumblebarry.rightBack.setPower(.45);
 
         try {

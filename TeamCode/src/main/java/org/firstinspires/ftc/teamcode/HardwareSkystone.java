@@ -20,25 +20,25 @@ public class HardwareSkystone {
 
     int driveTime;
 
-  //LiftMotors - Upper and Lower lift motors on lead screw platform
+    //LiftMotors - Upper and Lower lift motors on lead screw platform
 
     public DcMotor LiftL;
     public DcMotor LiftU;
-    public DcMotor GrabberArm;
 
 
+    //public DcMotor GrabberArm;
 
 
     //Actuator motor
-    //public DcMotor claw;
+    public DcMotor LinearActuator;
 
-    //Grabbing mechanism servos
+    //Board Grabber servos
     public Servo Grab1;
     public Servo Grab2;
-   // public CRServo twist;
+    // public CRServo twist;
 
-   // public Servo Backgrab;
-   // public Servo Backgrab2;
+    public Servo Thumper1;
+    public Servo Thumper2;
 
 /*
 
@@ -69,21 +69,23 @@ public class HardwareSkystone {
 
         LiftU = HWMap.dcMotor.get("liftU");
 
-        //claw = HWMap.dcMotor.get("claw");
+        LinearActuator = HWMap.dcMotor.get("LinearActuator");
 
-        GrabberArm = HWMap.dcMotor.get("GrabberArm");
+        // GrabberArm = HWMap.dcMotor.get("GrabberArm");
 
         Grab1 = HWMap.servo.get("Grab1");
         Grab2 = HWMap.servo.get("Grab2");
-      //  twist = HWMap.crservo.get("twist");
+
+        Thumper1 = HWMap.servo.get("Thumper1");
+        Thumper2 = HWMap.servo.get("Thumper2");
+
+        //  twist = HWMap.crservo.get("twist");
 
         Grab1.setPosition(0);
         Grab2.setPosition(1);
 
-      //  Backgrab=HWMap.servo.get("Backgrab");
-       // Backgrab2=HWMap.servo.get("Backgrab2");
-
-
+        Thumper1.setPosition(0);
+        Thumper2.setPosition(0);
 
 
     }
@@ -109,29 +111,29 @@ public class HardwareSkystone {
 
         //set encoder values to zero
 
-      //  leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-       // leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-      //  rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-       // rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //  leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //  rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         // counts = inches * 1120 (counts per revolution)/ 4*pi (circumference of wheels)
         // 1120/4*pi ~ 89 - we found that there was less error when given a precise number
 
-      //  NewLeftBackTarget = (int) (totalInches * 99);
-      //  NewLeftFrontTarget = (int) (totalInches * 99);
-       // NewRightBackTarget = (int) (totalInches * 99);
+        //  NewLeftBackTarget = (int) (totalInches * 99);
+        //  NewLeftFrontTarget = (int) (totalInches * 99);
+        // NewRightBackTarget = (int) (totalInches * 99);
         // NewRightFrontTarget = (int) (totalInches * 99);
 
         //get current position of the encoders at the start of the method
 
-      //  leftFront.setTargetPosition(Direction * NewLeftFrontTarget);
+        //  leftFront.setTargetPosition(Direction * NewLeftFrontTarget);
         //leftBack.setTargetPosition(Direction * NewLeftBackTarget);
-      //  rightFront.setTargetPosition(-Direction * NewRightFrontTarget);
-      //  rightBack.setTargetPosition(-Direction * NewRightBackTarget);
+        //  rightFront.setTargetPosition(-Direction * NewRightFrontTarget);
+        //  rightBack.setTargetPosition(-Direction * NewRightBackTarget);
 
-       // leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-       // leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-       // rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        // leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        // leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        // rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         //reset the timeout time  and start motion
@@ -142,7 +144,7 @@ public class HardwareSkystone {
         leftFront.setPower(power * Direction * .99);
         leftBack.setPower(power * Direction * .99);
 
-        rightFront.setPower(power * -Direction * .99) ;
+        rightFront.setPower(power * -Direction * .99);
         rightBack.setPower(power * -Direction * .99);
 
         while (leftFront.isBusy() && leftBack.isBusy() && rightFront.isBusy() && rightBack.isBusy()) {
@@ -168,8 +170,8 @@ public class HardwareSkystone {
 
         //set encoder values to zero
 
-       // leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-      //  leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //  leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -177,13 +179,13 @@ public class HardwareSkystone {
         // 1120/4*pi ~ 89 - we found that there was less error when given a precise number
 
         //NewLeftBackTarget = (int) (totalInches * 89 * .9);
-       // NewLeftFrontTarget = (int) (totalInches * 89 * .5);
-       // NewRightBackTarget = (int) (totalInches * 89 * .8);
+        // NewLeftFrontTarget = (int) (totalInches * 89 * .5);
+        // NewRightBackTarget = (int) (totalInches * 89 * .8);
         //NewRightFrontTarget = (int) (totalInches * 89);
 
         //get current position of the encoders at the start of the method
 
-       // leftFront.setTargetPosition(Direction * NewLeftFrontTarget);
+        // leftFront.setTargetPosition(Direction * NewLeftFrontTarget);
         //leftBack.setTargetPosition(Direction * NewLeftBackTarget);
         //rightFront.setTargetPosition(Direction * NewRightFrontTarget);
         //rightBack.setTargetPosition(Direction * NewRightBackTarget);
@@ -291,34 +293,24 @@ public class HardwareSkystone {
 { GrabberArm.setPower(power);}*/
 
 
-
-
     //-------------------------BUILDBOARD-GRABBER--------------------------------------------------------
 
 
-
-   public void Grabber(double positionR, double positionL)
-    { Grab1.setPosition(positionR);
-    Grab2.setPosition((positionL));
+    public void Grabber(double positionR, double positionL) {
+        Grab1.setPosition(positionR);
+        Grab2.setPosition((positionL));
     }
 
 
-  //  public void twister(double power)
-    {
-  //      twist.setPower(power);
-    }
+//-------------------------SKYSTONE-THUMPER-------------------------------------------------------------
 
-   // public void moveClaw (double power){
-     //   claw.setPower(power);
+    public void Thumper(double positionR, double positionL) {
+        Thumper1.setPosition(positionR);
+        Thumper2.setPosition(positionL);
+    }
 
 
 }
-
-
-   // public void BackGrabber(double positionL, double positionR) {
-       // Backgrab.setPosition(positionL);
-        //Backgrab2.setPosition(positionR);
-
 
 
 

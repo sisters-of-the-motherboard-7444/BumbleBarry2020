@@ -45,7 +45,7 @@ public class TeleOpRoverRuckus extends LinearOpMode {
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
 
-       // composeTelemetry();
+      // composeTelemetry();
 
         waitForStart();
 
@@ -58,10 +58,8 @@ public class TeleOpRoverRuckus extends LinearOpMode {
             double turn = gamepad1.left_stick_x;
 
             //Linear Actuator
-            // double Moveclaw = -gamepad2.left_stick_y;
-
-
-            //Bumblebarry.claw.setPower(Moveclaw);
+             double MovecActuator = -gamepad2.left_stick_y;
+            Bumblebarry.LinearActuator.setPower(MovecActuator);
 
             if (gamepad1.start) { // drive robot at slower speed for fine adjustments while carrying gold
 
@@ -97,14 +95,14 @@ public class TeleOpRoverRuckus extends LinearOpMode {
                 Bumblebarry.LiftU.setPower(0);
             }
             //motor test
-
+/*
             if (gamepad2.y) {
                 Bumblebarry.GrabberArm.setPower(1);
             } else {
                 Bumblebarry.GrabberArm.setPower(0);
             }
 
-
+*/
         }
 
                /* {
@@ -119,15 +117,21 @@ public class TeleOpRoverRuckus extends LinearOpMode {
                 */
 
 
-        //Grabber thing
+        //Board thing grabber
 
         if (gamepad2.b) {
-            Bumblebarry.Grabber(.5, .5);
-        } else if (gamepad2.a) {
-            Bumblebarry.Grabber(.9, 0.1);
+            Bumblebarry.Grabber(1, 0);
         } else if (gamepad2.y) {
-            Bumblebarry.Grabber(.1, .9);
+            Bumblebarry.Grabber(0, 1);
         }
+
+        if (gamepad2.x) {
+            Bumblebarry.Thumper(0, 1);
+        }
+        else if (gamepad2.a) {
+            Bumblebarry.Thumper(1,0);
+        }
+
 
             // {
             //     if (gamepad2.x) {
@@ -145,7 +149,7 @@ public class TeleOpRoverRuckus extends LinearOpMode {
             // Telemetry Configuration
             //----------------------------------------------------------------------------------------------
 
-   /* public void composeTelemetry();
+  /* public void composeTelemetry();
            {
 
         // At the beginning of each telemetry update, grab a bunch of data
@@ -231,9 +235,9 @@ public class TeleOpRoverRuckus extends LinearOpMode {
    //     return String.format(Locale.getDefault(), "%.1f", AngleUnit.DEGREES.normalize(degrees));
   //  }
 
+
+
+
 */
-
-
-
     }
 }

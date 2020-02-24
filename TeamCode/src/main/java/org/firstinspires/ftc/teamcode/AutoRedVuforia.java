@@ -66,6 +66,7 @@ public class AutoRedVuforia extends LinearOpMode {
     private OpenGLMatrix lastLocation = null;
     private VuforiaLocalizer vuforia = null;
     private boolean targetVisible = false;
+    private boolean stoneTargetSeen = false;
     private float phoneXRotate    = 0;
     private float phoneYRotate    = 0;
     private float phoneZRotate    = 0;
@@ -243,6 +244,7 @@ public class AutoRedVuforia extends LinearOpMode {
 
             // check all the trackable targets to see which one (if any) is visible.
             targetVisible = false;
+            stoneTargetSeen = false;
             for (VuforiaTrackable trackable : allTrackables) {
                 if (((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible()) {
                     telemetry.addData("Visible Target", trackable.getName());
@@ -255,7 +257,6 @@ public class AutoRedVuforia extends LinearOpMode {
                             Bumblebarry.rightBack.setPower(-.5);}
                     }
                     targetVisible = true;
-
 
                     // getUpdatedRobotLocation() will return null if no new information is available since
                     // the last time that call was made, or if the trackable is not currently visible.

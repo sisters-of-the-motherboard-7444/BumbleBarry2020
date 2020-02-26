@@ -40,15 +40,14 @@ public class AutoBlue2 extends LinearOpMode {
         Bumblebarry.initializeRobot(hardwareMap);
         System.out.println("Robot Initialized");
 
-       // Bumblebarry.Grab.setPosition(.5);
+        // Bumblebarry.Grab.setPosition(.5);
 
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
 
 
-
         waitForStart();
-        Bumblebarry.driveStraight(.5,2,1);
+    }}/* Bumblebarry.driveStraight(.5,2,1);
         sleep(1000);
 
         Bumblebarry.driveTurn(.5,5,-1);
@@ -77,3 +76,4 @@ public class AutoBlue2 extends LinearOpMode {
 
     }
 }
+*/

@@ -28,7 +28,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
 @Autonomous(name="AutoRedVuforia", group ="Autonomous")
 //@Disabled
 public class AutoRedVuforia extends LinearOpMode {
-    ElapsedTime runtime= new ElapsedTime();
+    ElapsedTime runtime = new ElapsedTime();
     HardwareSkystone Bumblebarry = new HardwareSkystone();
 
     // IMPORTANT:  For Phone Camera, set 1) the camera source and 2) the orientation, based on how your phone is mounted:
@@ -38,15 +38,15 @@ public class AutoRedVuforia extends LinearOpMode {
     // NOTE: If you are running on a CONTROL HUB, with only one USB WebCam, you must select CAMERA_CHOICE = BACK; and PHONE_IS_PORTRAIT = false;
     //
     private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
-    private static final boolean PHONE_IS_PORTRAIT = false  ;
+    private static final boolean PHONE_IS_PORTRAIT = false;
 
     private static final String VUFORIA_KEY =
             " AddfCmL/////AAAAGfhZdqZawEPNnf6i6NP5bBJnbxm51Vv6Ic543cGLSFZRXzcCLKL8Dz/UCbHG7kVdxhx3dkMGRdopyfekAowHmlslyP5m3pZkhDaGrzdVyZZnVV7rho4mjaUSBQJhx6plhZyFPPK6q7+7xcdFXRhSpOXtRTU3tjVQOFbA2B9uuRGheb1HeidRDvhS/856blHK3Wv +PmeJBgZIrPkGOrLPDsyUqQtFZxKnn65Yce43u0wcs/dbn0ssr+bvvqp1Q4JKJrm2XnzwmtqNd0PZHO6hxHzyaxC5ge +aExWcSEM72yE8d1DznHQ/s5wYRJpVaAss7/F885CTL0zB+Pzcb3wfuG93rlIQE8coMcmqrk+tmuHH ";
 
     // Since ImageTarget trackables use mm to specifiy their dimensions, we must use mm for all the physical dimension.
     // We will define some constants and conversions here
-    private static final float mmPerInch        = 25.4f;
-    private static final float mmTargetHeight   = (6) * mmPerInch;          // the height of the center of the target image above the floor
+    private static final float mmPerInch = 25.4f;
+    private static final float mmTargetHeight = (6) * mmPerInch;          // the height of the center of the target image above the floor
 
     // Constant for Stone Target
     private static final float stoneZ = 2.00f * mmPerInch;
@@ -60,18 +60,19 @@ public class AutoRedVuforia extends LinearOpMode {
 
     // Constants for perimeter targets
     private static final float halfField = 72 * mmPerInch;
-    private static final float quadField  = 36 * mmPerInch;
+    private static final float quadField = 36 * mmPerInch;
 
     // Class Members
     private OpenGLMatrix lastLocation = null;
     private VuforiaLocalizer vuforia = null;
     private boolean targetVisible = false;
     private boolean stoneTargetSeen = false;
-    private float phoneXRotate    = 0;
-    private float phoneYRotate    = 0;
-    private float phoneZRotate    = 0;
+    private float phoneXRotate = 0;
+    private float phoneYRotate = 0;
+    private float phoneZRotate = 0;
 
-    @Override public void runOpMode() {
+    @Override
+    public void runOpMode() {
         System.out.println("Starting up");
         telemetry.addData("init pressed", "about to initialize");
         telemetry.update();
@@ -80,7 +81,6 @@ public class AutoRedVuforia extends LinearOpMode {
         System.out.println("Initialize Robot");
         Bumblebarry.initializeRobot(hardwareMap);
         System.out.println("Robot Initialized");
-
 
 
         telemetry.addData("Status", "Ready to run");
@@ -94,7 +94,7 @@ public class AutoRedVuforia extends LinearOpMode {
         // VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraDirection   = BACK;
+        parameters.cameraDirection = BACK;
 
         //  Instantiate the Vuforia engine
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
@@ -169,7 +169,7 @@ public class AutoRedVuforia extends LinearOpMode {
 
         front1.setLocation(OpenGLMatrix
                 .translation(-halfField, -quadField, mmTargetHeight)
-                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0 , 90)));
+                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 90)));
 
         front2.setLocation(OpenGLMatrix
                 .translation(-halfField, quadField, mmTargetHeight)
@@ -185,7 +185,7 @@ public class AutoRedVuforia extends LinearOpMode {
 
         rear1.setLocation(OpenGLMatrix
                 .translation(halfField, quadField, mmTargetHeight)
-                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0 , -90)));
+                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, -90)));
 
         rear2.setLocation(OpenGLMatrix
                 .translation(halfField, -quadField, mmTargetHeight)
@@ -214,14 +214,14 @@ public class AutoRedVuforia extends LinearOpMode {
 
         // Rotate the phone vertical about the X axis if it's in portrait mode
         if (PHONE_IS_PORTRAIT) {
-            phoneXRotate = 90 ;
+            phoneXRotate = 90;
         }
 
         // Next, translate the camera lens to where it is on the robot.
         // In this example, it is centered (left to right), but forward of the middle of the robot, and above ground level.
-        final float CAMERA_FORWARD_DISPLACEMENT  = 4.0f * mmPerInch;   // eg: Camera is 4 Inches in front of robot center
+        final float CAMERA_FORWARD_DISPLACEMENT = 4.0f * mmPerInch;   // eg: Camera is 4 Inches in front of robot center
         final float CAMERA_VERTICAL_DISPLACEMENT = 8.0f * mmPerInch;   // eg: Camera is 8 Inches above ground
-        final float CAMERA_LEFT_DISPLACEMENT     = 0;     // eg: Camera is ON the robot's center line
+        final float CAMERA_LEFT_DISPLACEMENT = 0;     // eg: Camera is ON the robot's center line
 
         OpenGLMatrix robotFromCamera = OpenGLMatrix
                 .translation(CAMERA_FORWARD_DISPLACEMENT, CAMERA_LEFT_DISPLACEMENT, CAMERA_VERTICAL_DISPLACEMENT)
@@ -240,88 +240,64 @@ public class AutoRedVuforia extends LinearOpMode {
         // Tap the preview window to receive a fresh image.
 
         targetsSkyStone.activate();
-        while (!isStopRequested()) {
+        targetVisible = false;
+        boolean stoneTargetSeen = false;
+        int counter = 0;
+        while (!stoneTargetSeen && counter < 3) {
 
-            // check all the trackable targets to see which one (if any) is visible.
-            targetVisible = false;
-            stoneTargetSeen = false;
-            for (VuforiaTrackable trackable : allTrackables) {
-                if (((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible()) {
+            if (((VuforiaTrackableDefaultListener) targetsSkyStone.get(0).getListener()).isVisible()){
+                telemetry.addLine("Stone Target Seen. YAY");
+                stoneTargetSeen = true;
+            }
+            else{
+                Bumblebarry.driveMecanum(.5, "right");
+                sleep(1000);
+                Bumblebarry.driveMecanum(0, "right");
+                counter++;
+            }
+            // check all the trackable targets to see which one (if any) is visible
+
+           /* for (VuforiaTrackable trackable : allTrackables) {
+                if (((VuforiaTrackableDefaultListener) trackable.getListener()).isVisible()) {
                     telemetry.addData("Visible Target", trackable.getName());
+                    targetVisible = true;
 
                     if (trackable.getName().equals("Stone Target")) {
-                        telemetry.addLine("Stone Target YAY");
-                        { Bumblebarry.leftFront.setPower(.5);
-                            Bumblebarry.leftBack.setPower(.5);
-                            Bumblebarry.rightFront.setPower(-.5);
-                            Bumblebarry.rightBack.setPower(-.5);}
+                        telemetry.addLine("Stone Target Seen. YAY");
+                        stoneTargetSeen = true;
+                        break;
                     }
-                    targetVisible = true;
+
+                    Bumblebarry.driveMecanum(.5, "right");
+                    sleep(1000);
+                    Bumblebarry.driveMecanum(0, "right");
+
+                    sleep(5000);
 
                     // getUpdatedRobotLocation() will return null if no new information is available since
                     // the last time that call was made, or if the trackable is not currently visible.
-                    OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener)trackable.getListener()).getUpdatedRobotLocation();
+                    OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener) trackable.getListener()).getUpdatedRobotLocation();
                     if (robotLocationTransform != null) {
                         lastLocation = robotLocationTransform;
-                        Bumblebarry.leftFront.setPower(.5);
-                        Bumblebarry.leftBack.setPower(-.5);
-                        Bumblebarry.rightFront.setPower(.5);
-                        Bumblebarry.rightBack.setPower(-.5);}
-
                     }
                     break;
                 }
             }
-
+*/
             // Provide feedback as to where the robot is located (if we know).
-            String positionSkystone = "";
-            if (targetVisible) {
-                // express position (translation) of robot in inches.
-                VectorF translation = lastLocation.getTranslation();
-                telemetry.addData("Pos (in)", "{X, Y, Z} = %.1f, %.1f, %.1f",
-                        translation.get(0) / mmPerInch, translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
-
-                double xPostion = translation.get(0);
-
-
-                if (xPostion < -10) {
-                    positionSkystone = "left";
-
-                } else {
-                    positionSkystone = "center";
-
-                }
-
-                // express the rotation of the robot in degrees.
-                Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
-                telemetry.addData("Rot (deg)", "{Roll, Pitch, Heading} = %.0f, %.0f, %.0f", rotation.firstAngle, rotation.secondAngle, rotation.thirdAngle);
-            }
-            else {
-                positionSkystone = "right";
-                telemetry.addData("Visible Target", "none");
-            }
-            telemetry.addData("Skystone Position", positionSkystone);
             telemetry.update();
         }
 
+
+        Bumblebarry.driveStraight(.5, 1);
+        sleep(1000);
+        Bumblebarry.driveStraight(0, 1);
+
+
+
         // Disable Tracking when we are done;
-      //targetsskystone.deactivate()
+        targetsSkyStone.deactivate();
 
 
-/*if (targetVisible=true)
-{ Bumblebarry.leftFront.setPower(.5);
-        Bumblebarry.leftBack.setPower(.5);
-        Bumblebarry.rightFront.setPower(-.5);
-        Bumblebarry.rightBack.setPower(-.5);}
-else if (targetVisible = false)
-    { Bumblebarry.leftFront.setPower(0);
-            Bumblebarry.leftBack.setPower(0);
-            Bumblebarry.rightFront.setPower(0);
-            Bumblebarry.rightBack.setPower(0);
-
-        }
-
-*/
-
-
+    }
 }

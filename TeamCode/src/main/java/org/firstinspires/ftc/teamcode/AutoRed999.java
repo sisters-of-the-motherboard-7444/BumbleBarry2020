@@ -1,9 +1,12 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+*/
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -29,10 +32,13 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
 
 /*Created by mandy.peake and helen.watson on 11/22/19 */
 
-@Autonomous(name= "Blue3", group= "Autonomous")
-public class AutoBlue3 extends LinearOpMode {
+@Autonomous (name= "Red999", group= "Autonomous")
+public class AutoRed999 extends LinearOpMode {
+
     ElapsedTime runtime = new ElapsedTime();
+
     HardwareSkystone Bumblebarry = new HardwareSkystone();
+
 
     @Override
     public void runOpMode() {
@@ -45,34 +51,40 @@ public class AutoBlue3 extends LinearOpMode {
         Bumblebarry.initializeRobot(hardwareMap);
         System.out.println("Robot Initialized");
 
-      //  Bumblebarry.Grab.setPosition(.5);
+
 
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
 
 
+        waitForStart();
 
-        waitForStart();}}
+        try {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
 
- /*       Bumblebarry.driveStraight(1,6,1);
+Bumblebarry.driveStraight(.5,1);
 
-        { Bumblebarry.LiftL.setPower(.5);
-            Bumblebarry.LiftL.setPower(.5);}
-        sleep(1000);
-        Bumblebarry.driveStraight(.5,1);
-        sleep(1000);
-        {Bumblebarry.LiftL.setPower(-.5);
-            Bumblebarry.LiftL.setPower(-.5);}
-        sleep(1000);
-        Bumblebarry.driveStraight(.8,10);
 
-        { Bumblebarry.LiftL.setPower(.5);
-            Bumblebarry.LiftL.setPower(.5);}
-        sleep(1000);
 
-        Bumblebarry.driveMecanum(.5,10,-1,1,1,-1);
+
+
+
+        try {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        Bumblebarry.ThumperClamp(1);
+
+        Bumblebarry.stop(0);
+
 
 
     }
 }
-*/

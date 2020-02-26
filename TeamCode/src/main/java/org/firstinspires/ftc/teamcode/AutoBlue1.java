@@ -52,7 +52,7 @@ public class AutoBlue1 extends LinearOpMode {
 
         waitForStart();
 
-        Bumblebarry.driveStraight(.5, 1, 1);
+        Bumblebarry.driveStraight(.5, 1);
 
         sleep(27000000);
     }

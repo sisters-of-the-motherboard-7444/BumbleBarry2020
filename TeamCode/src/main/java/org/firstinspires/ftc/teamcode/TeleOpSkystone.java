@@ -21,8 +21,8 @@ import java.util.Locale;
  * Created by mandy.peake and helen.watson on 8/30/2019.
  */
 
-@TeleOp (name= "TeleOpRoverRuckus", group= "Linear Opmode")
-public class TeleOpRoverRuckus extends LinearOpMode {
+@TeleOp (name= "TeleOpSkystone", group= "Linear Opmode")
+public class TeleOpSkystone extends LinearOpMode {
 
     HardwareSkystone Bumblebarry = new HardwareSkystone();
 
@@ -58,8 +58,11 @@ public class TeleOpRoverRuckus extends LinearOpMode {
             double turn = gamepad1.left_stick_x;
 
             //Linear Actuator
-             double MovecActuator = -gamepad2.left_stick_y;
-            Bumblebarry.LinearActuator.setPower(MovecActuator);
+             double MoveActuator = -gamepad2.left_stick_y;
+            Bumblebarry.LinearActuator.setPower(MoveActuator);
+
+            double Liftarm = -gamepad2.right_stick_y;
+            Bumblebarry.arm.setPower(Liftarm);
 
             if (gamepad1.start) { // drive robot at slower speed for fine adjustments while carrying gold
 
@@ -119,17 +122,22 @@ public class TeleOpRoverRuckus extends LinearOpMode {
 
         //Board thing grabber
 
-        if (gamepad2.b) {
+        if (gamepad1.b) {
             Bumblebarry.Grabber(1, 0);
-        } else if (gamepad2.y) {
+        } else if (gamepad1.y) {
             Bumblebarry.Grabber(0, 1);
         }
 
-        if (gamepad2.x) {
-            Bumblebarry.Thumper(0, 1);
+     /*   if (gamepad2.x) {
+
+        } else if (gamepad2.a) {
+
         }
-        else if (gamepad2.a) {
-            Bumblebarry.Thumper(1,0);
+*/
+        if (gamepad2.b) {
+            Bumblebarry.ThumperBack.setPosition(.5);
+        } else if (gamepad2.y) {
+            Bumblebarry.ThumperBack.setPosition(1);
         }
 
 

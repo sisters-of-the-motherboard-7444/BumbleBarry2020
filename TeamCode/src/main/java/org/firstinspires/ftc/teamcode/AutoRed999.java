@@ -80,7 +80,7 @@ Bumblebarry.driveStraight(.5,1);
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.ThumperClamp(1);
+        //Bumblebarry.ThumperClamp(1);
 
         Bumblebarry.stop(0);
 

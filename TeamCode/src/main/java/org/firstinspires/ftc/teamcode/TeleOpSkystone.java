@@ -58,11 +58,11 @@ public class TeleOpSkystone extends LinearOpMode {
             double turn = gamepad1.left_stick_x;
 
             //Linear Actuator
-             double MoveActuator = -gamepad2.left_stick_y;
+            double MoveActuator = -gamepad2.left_stick_y;
             Bumblebarry.LinearActuator.setPower(MoveActuator);
 
             double Liftarm = -gamepad2.right_stick_y;
-            Bumblebarry.arm.setPower(Liftarm);
+            Bumblebarry.arm.setPower(Liftarm * 0.4);
 
             if (gamepad1.start) { // drive robot at slower speed for fine adjustments while carrying gold
 
@@ -106,6 +106,18 @@ public class TeleOpSkystone extends LinearOpMode {
             }
 
 */
+            if (gamepad1.b) {
+                Bumblebarry.Grabber(1, 0);
+            } else if (gamepad1.y) {
+                Bumblebarry.Grabber(0, 1);
+            }
+//pressing y makes the clamp go down and b makes the clamp go up
+            if (gamepad2.y) {
+                Bumblebarry.ThumperClamp(.8,.2);
+            } else if (gamepad2.b) {
+                Bumblebarry.ThumperClamp(0,1);
+            }
+
         }
 
                /* {
@@ -122,23 +134,6 @@ public class TeleOpSkystone extends LinearOpMode {
 
         //Board thing grabber
 
-        if (gamepad1.b) {
-            Bumblebarry.Grabber(1, 0);
-        } else if (gamepad1.y) {
-            Bumblebarry.Grabber(0, 1);
-        }
-
-     /*   if (gamepad2.x) {
-
-        } else if (gamepad2.a) {
-
-        }
-*/
-        if (gamepad2.b) {
-            Bumblebarry.ThumperBack.setPosition(.5);
-        } else if (gamepad2.y) {
-            Bumblebarry.ThumperBack.setPosition(1);
-        }
 
 
             // {

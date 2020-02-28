@@ -83,7 +83,7 @@ public class AutoRed1 extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.ThumperClamp(1);
+      //  Bumblebarry.ThumperClamp(1);
 
         Bumblebarry.leftFront.setPower(0.0);
         Bumblebarry.leftBack.setPower(0.0);

@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.vuforia.Vuforia;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -58,7 +59,9 @@ public class HardwareSkystone {
     // public CRServo twist;
 
 
-    public Servo ThumperBack;
+    public Servo Thumper1;
+    public Servo Thumper2;
+
 
     // IMPORTANT:  For Phone Camera, set 1) the camera source and 2) the orientation, based on how your phone is mounted:
     // 1) Camera Source.  Valid choices are:  BACK (behind screen) or FRONT (selfie side)
@@ -66,38 +69,39 @@ public class HardwareSkystone {
     //
     // NOTE: If you are running on a CONTROL HUB, with only one USB WebCam, you must select CAMERA_CHOICE = BACK; and PHONE_IS_PORTRAIT = false;
     //
-    private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
-    private static final boolean PHONE_IS_PORTRAIT = false;
 
-    private static final String VUFORIA_KEY =
-            " AddfCmL/////AAAAGfhZdqZawEPNnf6i6NP5bBJnbxm51Vv6Ic543cGLSFZRXzcCLKL8Dz/UCbHG7kVdxhx3dkMGRdopyfekAowHmlslyP5m3pZkhDaGrzdVyZZnVV7rho4mjaUSBQJhx6plhZyFPPK6q7+7xcdFXRhSpOXtRTU3tjVQOFbA2B9uuRGheb1HeidRDvhS/856blHK3Wv +PmeJBgZIrPkGOrLPDsyUqQtFZxKnn65Yce43u0wcs/dbn0ssr+bvvqp1Q4JKJrm2XnzwmtqNd0PZHO6hxHzyaxC5ge +aExWcSEM72yE8d1DznHQ/s5wYRJpVaAss7/F885CTL0zB+Pzcb3wfuG93rlIQE8coMcmqrk+tmuHH ";
+        private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
+        private static final boolean PHONE_IS_PORTRAIT = false;
 
-    // Since ImageTarget trackables use mm to specifiy their dimensions, we must use mm for all the physical dimension.
-    // We will define some constants and conversions here
-    private static final float mmPerInch = 25.4f;
-    private static final float mmTargetHeight = (6) * mmPerInch;          // the height of the center of the target image above the floor
+        private static final String VUFORIA_KEY =
+                " AddfCmL/////AAAAGfhZdqZawEPNnf6i6NP5bBJnbxm51Vv6Ic543cGLSFZRXzcCLKL8Dz/UCbHG7kVdxhx3dkMGRdopyfekAowHmlslyP5m3pZkhDaGrzdVyZZnVV7rho4mjaUSBQJhx6plhZyFPPK6q7+7xcdFXRhSpOXtRTU3tjVQOFbA2B9uuRGheb1HeidRDvhS/856blHK3Wv +PmeJBgZIrPkGOrLPDsyUqQtFZxKnn65Yce43u0wcs/dbn0ssr+bvvqp1Q4JKJrm2XnzwmtqNd0PZHO6hxHzyaxC5ge +aExWcSEM72yE8d1DznHQ/s5wYRJpVaAss7/F885CTL0zB+Pzcb3wfuG93rlIQE8coMcmqrk+tmuHH ";
 
-    // Constant for Stone Target
-    private static final float stoneZ = 2.00f * mmPerInch;
+        // Since ImageTarget trackables use mm to specifiy their dimensions, we must use mm for all the physical dimension.
+        // We will define some constants and conversions here
+        private static final float mmPerInch = 25.4f;
+        private static final float mmTargetHeight = (6) * mmPerInch;          // the height of the center of the target image above the floor
 
-    // Constants for the center support targets
-    private static final float bridgeZ = 6.42f * mmPerInch;
-    private static final float bridgeY = 23 * mmPerInch;
-    private static final float bridgeX = 5.18f * mmPerInch;
-    private static final float bridgeRotY = 59;                                 // Units are degrees
-    private static final float bridgeRotZ = 180;
+        // Constant for Stone Target
+        private static final float stoneZ = 2.00f * mmPerInch;
 
-    // Constants for perimeter targets
-    private static final float halfField = 72 * mmPerInch;
-    private static final float quadField = 36 * mmPerInch;
+        // Constants for the center support targets
+        private static final float bridgeZ = 6.42f * mmPerInch;
+        private static final float bridgeY = 23 * mmPerInch;
+        private static final float bridgeX = 5.18f * mmPerInch;
+        private static final float bridgeRotY = 59;                                 // Units are degrees
+        private static final float bridgeRotZ = 180;
 
-    // Class Members
-    private OpenGLMatrix lastLocation = null;
-    private VuforiaLocalizer vuforia = null;
-    private boolean targetVisible = false;
-    private float phoneXRotate = 0;
-    private float phoneYRotate = 0;
-    private float phoneZRotate = 0;
+        // Constants for perimeter targets
+        private static final float halfField = 72 * mmPerInch;
+        private static final float quadField = 36 * mmPerInch;
+
+        // Class Members
+        private OpenGLMatrix lastLocation = null;
+        private VuforiaLocalizer vuforia = null;
+        private boolean targetVisible = false;
+        private float phoneXRotate = 0;
+        private float phoneYRotate = 0;
+        private float phoneZRotate = 0;
 
 /*
 
@@ -137,16 +141,20 @@ public class HardwareSkystone {
         Grab1 = HWMap.servo.get("Grab1");
         Grab2 = HWMap.servo.get("Grab2");
 
+        Thumper1= HWMap.servo.get("Thumper1");
+        Thumper2 = HWMap.servo.get("Thumper2");
 
-        ThumperBack = HWMap.servo.get("ThumperBack");
 
         //  twist = HWMap.crservo.get("twist");
 
         Grab1.setPosition(0);
         Grab2.setPosition(1);
 
+        Thumper1.setPosition(1);
+        Thumper2.setPosition(0);
 
-        ThumperBack.setPosition(1);
+
+
 
         int cameraMonitorViewId = HWMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", HWMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
@@ -291,9 +299,9 @@ public class HardwareSkystone {
         for (VuforiaTrackable trackable : allTrackables) {
             ((VuforiaTrackableDefaultListener) trackable.getListener()).setPhoneInformation(robotFromCamera, parameters.cameraDirection);
         }
+}
 
 
-    }
 
 
     //--------------------------DRIVE--FORWARD-------------------------------------------------------
@@ -360,7 +368,7 @@ public class HardwareSkystone {
         int rightFrontDirection;
         int rightBackDirection;
 
-        if (direction.equals("left")) {
+        if (direction.equals("right")) {
             leftFrontDirection = 1;
             leftBackDirection = -1;
             rightFrontDirection = 1;
@@ -388,7 +396,7 @@ public class HardwareSkystone {
 { GrabberArm.setPower(power);}*/
 
 
-    //-------------------------BUILDBOARD-GRABBER--------------------------------------------------------
+//-------------------------BUILDBOARD-GRABBER--------------------------------------------------------
 
 
     public void Grabber(double positionR, double positionL) {
@@ -401,10 +409,10 @@ public class HardwareSkystone {
 
 
 
-public void ThumperClamp (double position)
-{
-    ThumperBack.setPosition(position);
-}
+    public void ThumperClamp (double positionR, double positionL) {
+        Thumper1.setPosition(positionR);
+        Thumper2.setPosition(positionL);
+    }
 
 //-------------------------STOP-BUMBLEBARRY-------------------------------------------------------------
  public void stop (double power) {
@@ -413,7 +421,12 @@ public void ThumperClamp (double position)
         rightFront.setPower(0);
         rightBack.setPower(0);
  }
-}
+
+
+
+
+    }
+
 
 
 

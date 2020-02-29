@@ -147,8 +147,7 @@ public class HardwareSkystone {
 
         //  twist = HWMap.crservo.get("twist");
 
-        Grab1.setPosition(0);
-        Grab2.setPosition(1);
+
 
         Thumper1.setPosition(1);
         Thumper2.setPosition(0);
@@ -312,11 +311,11 @@ public class HardwareSkystone {
 
         driveTime = 0;
 
-        leftFront.setPower(power * Direction * .99);
-        leftBack.setPower(power * Direction * .99);
+        leftFront.setPower(power * -Direction * .99);
+        leftBack.setPower(power * -Direction * .99);
 
-        rightFront.setPower(power * -Direction * .99);
-        rightBack.setPower(power * -Direction * .99);
+        rightFront.setPower(power * Direction * .99);
+        rightBack.setPower(power * Direction * .99);
 
     }
     //--------------------------DRIVE--TURN-------------------------------------------------------

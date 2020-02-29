@@ -81,18 +81,25 @@ public class AutoSkystone1 extends LinearOpMode {
                 Bumblebarry.driveMecanum(0, "right");
                 counter++;
             }
-
-    Bumblebarry.driveStraight(.5,1);
-
+        Bumblebarry.driveStraight(.5,1);
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         }
         catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
 
         Bumblebarry.LinearActuator.setPower(.1);
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
 
+        Bumblebarry.ThumperClamp(0,1);
+
+        Bumblebarry.driveStraight(.2,-1);
         try {
             Thread.sleep(2000);
         }
@@ -100,43 +107,27 @@ public class AutoSkystone1 extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-    Bumblebarry.ThumperClamp(0,1);
-
+    Bumblebarry.driveMecanum(.75,"left");
         try {
-            Thread.sleep(2000);
+            Thread.sleep(3500);
         }
         catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-    Bumblebarry.driveStraight(.5,-1);
 
+    Bumblebarry.driveStraight(.5,1);
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         }
         catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-    Bumblebarry.driveMecanum(.8,"left");
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    Bumblebarry.driveStraight(.3,1);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
+Bumblebarry.stop(0);
 
     Bumblebarry.LiftU.setPower(.5);
-
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         }
         catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -145,7 +136,7 @@ public class AutoSkystone1 extends LinearOpMode {
     Bumblebarry.ThumperClamp(.8,.2);
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         }
         catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -153,49 +144,46 @@ public class AutoSkystone1 extends LinearOpMode {
 
         Bumblebarry.driveTurn(.7,"right");
 
+
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         }
         catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.Grabber(1,0);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-
-        Bumblebarry.driveStraight(.6,-1);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
 
         Bumblebarry.Grabber(0,1);
 
         try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-
-        Bumblebarry.driveMecanum(.6,"right");
+Bumblebarry.driveStraight(.6,1);
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(200);
         }
         catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+        Bumblebarry.Grabber(.8,.2);
+
+        Bumblebarry.leftFront.setPower(-.45);
+        Bumblebarry.leftBack.setPower(.45);
+        Bumblebarry.rightFront.setPower(-.45);
+        Bumblebarry.rightBack.setPower(.45);
+
+        try {
+            Thread.sleep(3500);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+
+
     }}
-            // check all the trackable targets to see which one (if any) is visible
+
 
 

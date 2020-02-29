@@ -59,10 +59,10 @@ public class AutoRedBoard extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.25);
-        Bumblebarry.leftBack.setPower(-.25);
-        Bumblebarry.rightFront.setPower(.25);
-        Bumblebarry.rightBack.setPower(-.25);
+        Bumblebarry.leftFront.setPower(.35);
+        Bumblebarry.leftBack.setPower(-.35);
+        Bumblebarry.rightFront.setPower(.35);
+        Bumblebarry.rightBack.setPower(-.35);
 
         try {
             Thread.sleep(2000);
@@ -70,10 +70,10 @@ public class AutoRedBoard extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.28);
-        Bumblebarry.leftBack.setPower(.28);
-        Bumblebarry.rightFront.setPower(-.28);
-        Bumblebarry.rightBack.setPower(-.28);
+        Bumblebarry.leftFront.setPower(.33);
+        Bumblebarry.leftBack.setPower(.33);
+        Bumblebarry.rightFront.setPower(-.33);
+        Bumblebarry.rightBack.setPower(-.33);
 
         try {
             Thread.sleep(2500);
@@ -81,7 +81,7 @@ public class AutoRedBoard extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.Grabber(1,0);
+        Bumblebarry.Grabber(.5,0);
 
         try {
             Thread.sleep(1000);
@@ -89,10 +89,10 @@ public class AutoRedBoard extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(-.45);
-        Bumblebarry.leftBack.setPower(-.45);
-        Bumblebarry.rightFront.setPower(.45);
-        Bumblebarry.rightBack.setPower(.45);
+        Bumblebarry.leftFront.setPower(-.55);
+        Bumblebarry.leftBack.setPower(-.55);
+        Bumblebarry.rightFront.setPower(.55);
+        Bumblebarry.rightBack.setPower(.55);
 
         try {
             Thread.sleep(2500);
@@ -108,10 +108,10 @@ public class AutoRedBoard extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(-.45);
-        Bumblebarry.leftBack.setPower(.45);
-        Bumblebarry.rightFront.setPower(-.45);
-        Bumblebarry.rightBack.setPower(.45);
+        Bumblebarry.leftFront.setPower(-.5);
+        Bumblebarry.leftBack.setPower(.5);
+        Bumblebarry.rightFront.setPower(-.5);
+        Bumblebarry.rightBack.setPower(.5);
 
         try {
             Thread.sleep(3500);

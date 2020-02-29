@@ -26,8 +26,8 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
 
 /*Created by mandy.peake and helen.watson on 11/22/19 */
 
-@Autonomous (name= "RedBoard2", group= "Autonomous")
-public class AutoRedBoard2 extends LinearOpMode {
+@Autonomous (name= "BlueBoard2", group= "Autonomous")
+public class AutoBlueBoard2 extends LinearOpMode {
 
     ElapsedTime runtime = new ElapsedTime();
 
@@ -59,10 +59,10 @@ public class AutoRedBoard2 extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(.35);
-        Bumblebarry.leftBack.setPower(-.35);
-        Bumblebarry.rightFront.setPower(.35);
-        Bumblebarry.rightBack.setPower(-.35);
+        Bumblebarry.leftFront.setPower(-.35);
+        Bumblebarry.leftBack.setPower(.35);
+        Bumblebarry.rightFront.setPower(-.35);
+        Bumblebarry.rightBack.setPower(.35);
 
         try {
             Thread.sleep(2000);
@@ -108,10 +108,10 @@ public class AutoRedBoard2 extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(-.5);
-        Bumblebarry.leftBack.setPower(.5);
-        Bumblebarry.rightFront.setPower(-.5);
-        Bumblebarry.rightBack.setPower(.5);
+        Bumblebarry.leftFront.setPower(.5);
+        Bumblebarry.leftBack.setPower(-.5);
+        Bumblebarry.rightFront.setPower(.5);
+        Bumblebarry.rightBack.setPower(-.5);
 
         try {
             Thread.sleep(2500);
@@ -130,10 +130,10 @@ public class AutoRedBoard2 extends LinearOpMode {
             Thread.currentThread().interrupt();
         }
 
-        Bumblebarry.leftFront.setPower(-.4);
-        Bumblebarry.leftBack.setPower(.4);
-        Bumblebarry.rightFront.setPower(-.4);
-        Bumblebarry.rightBack.setPower(.4);
+        Bumblebarry.leftFront.setPower(.4);
+        Bumblebarry.leftBack.setPower(-.4);
+        Bumblebarry.rightFront.setPower(.4);
+        Bumblebarry.rightBack.setPower(-.4);
 
         try {
             Thread.sleep(2000);
